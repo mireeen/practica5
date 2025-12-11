@@ -157,32 +157,41 @@ El broker central utiliza otro certificado CA distinto.
 
 Se muestra lo siguiente en el agregador (bridge mqtt, ejecutandolo con mosquitto -c /etc/mosquitto/mosquitto.conf -v)
 
-1765305832: Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (4 bytes))
-1765305832: Sending PUBLISH to Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (4 bytes))
-1765305834: Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305834: Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
-1765305834: Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305834: Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
-1765305834: Sending PUBLISH to Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
-1765305834: Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305834: Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
-1765305834: Sending PUBLISH to Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
-1765305836: Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305836: Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305836: Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305838: Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305838: Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305838: Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305840: Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305840: Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305840: Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305842: Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305842: Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305842: Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305844: Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305844: Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305844: Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305846: Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305846: Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+Timestamp     | Evento
+--------------|-------------------------------------------------------------------------------------------------------------------------------------------
+1765305832    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (4 bytes))
+1765305832    | Sending PUBLISH to Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (4 bytes))
+
+1765305834    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305834    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
+1765305834    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305834    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
+1765305834    | Sending PUBLISH to Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
+1765305834    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305834    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
+1765305834    | Sending PUBLISH to Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
+
+1765305836    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305836    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305836    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+
+1765305838    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305838    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305838    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+
+1765305840    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305840    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305840    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+
+1765305842    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305842    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305842    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+
+1765305844    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305844    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305844    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+
+1765305846    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305846    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
 
 
