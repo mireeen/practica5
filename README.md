@@ -104,94 +104,120 @@ Todos los archivos están en:
 
 /etc/mosquitto/conf.d/
 
-7.1 Autenticación – auth.conf
+### 7.1 Autenticación – auth.conf
+
 allow_anonymous false
 password_file /etc/mosquitto/passwd
 
+Usuario creado:
+mosquitto_passwd -c /etc/mosquitto/passwd sonda1
+(Usuario/contraseña: sonda1 : sonda1)
 
-Usuarios creados:
+### 7.2 TLS Local – tls.conf
 
-mosquitto_passwd -c /etc/mosquitto/passwd sonda1 --> Autenticación sonda-agregador (usuario:contraseña sonda1:sonda1)
-
-
-7.2 TLS Local – tls.conf
 listener 8883
 cafile /etc/mosquitto/certs/ca.crt
-certfile /etc/mosquitto/certs/server.crt   --> certificados generados con CA propia
+certfile /etc/mosquitto/certs/server.crt
 keyfile /etc/mosquitto/certs/server.key
 require_certificate false
 tls_version tlsv1.2
 
-7.3 Bridge a Webalumnos – bridge.conf
+### 7.3 Bridge a Webalumnos – bridge.conf
+
 connection webalumnos
 address webalumnos.tlm.unavarra.es:10421
 
 topic # both 0
 
-remote_username grupo05		--> Autenticación agregador-controlador 
+remote_username grupo05
 remote_password Hiezoz8foo
 
 try_private false
 bridge_cafile /etc/ssl/certs/ca-certificates.crt
 
-
-⚠️ Importante
-Si se activa bridge_cafile con otro certificado distinto del aceptado por webalumnos, el bridge no conecta.
-El broker central utiliza otro certificado CA distinto.
+### Importante
+- Si se activa bridge_cafile con un certificado distinto del aceptado por Webalumnos, el bridge no conecta.
+- El broker central utiliza una CA distinta.
 
 
 
 ## 8. Evidencia de Funcionamiento
 8.1 Logs del ESP32
+
 [INFO] Pot=2012 Timestamp=1765228411 
+
 [MQTT] Publicado O2: {"valor":2012,"timestamp":1765228411} 
+
 [MQTT] Publicada ALARMA: true 
+
 [MQTT] Recibido: Topic: /sonda/34/o2/alarma MSG: true 
+
 [MQTT] Recibido: Topic: /sonda/34/o2/alarma MSG: true 
+
 [INFO] Pot=1995 Timestamp=1765228413 
+
 [MQTT] Publicado O2: {"valor":1995,"timestamp":1765228413} 
+
 [INFO] Pot=1997 Timestamp=1765228415 
+
 [MQTT] Publicado O2: {"valor":1997,"timestamp":1765228415}
 
 
 
 Se muestra lo siguiente en el agregador (bridge mqtt, ejecutandolo con mosquitto -c /etc/mosquitto/mosquitto.conf -v)
 
-Timestamp     | Evento
---------------|-------------------------------------------------------------------------------------------------------------------------------------------
-1765305832    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (4 bytes))
-1765305832    | Sending PUBLISH to Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (4 bytes))
+Timestamp       Acción             Origen/Destino                   Topic                   Bytes
 
-1765305834    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305834    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
-1765305834    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305834    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
-1765305834    | Sending PUBLISH to Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
-1765305834    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305834    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
-1765305834    | Sending PUBLISH to Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/alarma', ... (5 bytes))
+1765305832      Received PUBLISH   local.GL-MT300N-V2.webalumnos    /sonda/34/o2/alarma     4
 
-1765305836    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305836    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305836    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305832      Sending PUBLISH    Arduino-00001066                 /sonda/34/o2/alarma     4
 
-1765305838    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305838    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305838    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305834      Received PUBLISH   Arduino-00001066                 /sonda/34/o2/datos      36
 
-1765305840    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305840    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305840    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305834      Received PUBLISH   Arduino-00001066                 /sonda/34/o2/alarma     5
 
-1765305842    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305842    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305842    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305834      Sending PUBLISH    local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
 
-1765305844    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305844    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305844    | Received PUBLISH from local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305834      Sending PUBLISH    local.GL-MT300N-V2.webalumnos    /sonda/34/o2/alarma     5
 
-1765305846    | Received PUBLISH from Arduino-00001066 (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
-1765305846    | Sending PUBLISH to local.GL-MT300N-V2.webalumnos (d0, q0, r0, m0, '/sonda/34/o2/datos', ... (36 bytes))
+1765305834      Sending PUBLISH    Arduino-00001066                 /sonda/34/o2/alarma     5
 
+1765305834      Received PUBLISH   local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
 
+1765305834      Received PUBLISH   local.GL-MT300N-V2.webalumnos    /sonda/34/o2/alarma     5
+
+1765305834      Sending PUBLISH    Arduino-00001066                 /sonda/34/o2/alarma     5
+
+1765305836      Received PUBLISH   Arduino-00001066                 /sonda/34/o2/datos      36
+
+1765305836      Sending PUBLISH    local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305836      Received PUBLISH   local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305838      Received PUBLISH   Arduino-00001066                 /sonda/34/o2/datos      36
+
+1765305838      Sending PUBLISH    local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305838      Received PUBLISH   local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305840      Received PUBLISH   Arduino-00001066                 /sonda/34/o2/datos      36
+
+1765305840      Sending PUBLISH    local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305840      Received PUBLISH   local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305842      Received PUBLISH   Arduino-00001066                 /sonda/34/o2/datos      36
+
+1765305842      Sending PUBLISH    local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305842      Received PUBLISH   local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305844      Received PUBLISH   Arduino-00001066                 /sonda/34/o2/datos      36
+
+1765305844      Sending PUBLISH    local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305844      Received PUBLISH   local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
+1765305846      Received PUBLISH   Arduino-00001066                 /sonda/34/o2/datos      36
+
+1765305846      Sending PUBLISH    local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
