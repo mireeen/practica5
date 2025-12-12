@@ -142,7 +142,7 @@ bridge_cafile /etc/ssl/certs/ca-certificates.crt
 
 
 ## 8. Evidencia de Funcionamiento
-8.1 Logs del ESP32
+#### 8.1 Logs del ESP32
 
 [INFO] Pot=2012 Timestamp=1765228411 
 
@@ -164,7 +164,7 @@ bridge_cafile /etc/ssl/certs/ca-certificates.crt
 
 
 
-Se muestra lo siguiente en el agregador (bridge mqtt, ejecutandolo con mosquitto -c /etc/mosquitto/mosquitto.conf -v)
+#### Se muestra lo siguiente en el agregador (bridge mqtt, ejecutandolo con mosquitto -c /etc/mosquitto/mosquitto.conf -v)
 
 Timestamp       Acción             Origen/Destino                   Topic                   Bytes
 
@@ -221,3 +221,4 @@ Timestamp       Acción             Origen/Destino                   Topic      
 1765305846      Received PUBLISH   Arduino-00001066                 /sonda/34/o2/datos      36
 
 1765305846      Sending PUBLISH    local.GL-MT300N-V2.webalumnos    /sonda/34/o2/datos      36
+
